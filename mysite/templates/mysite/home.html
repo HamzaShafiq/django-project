@@ -1,0 +1,18 @@
+{% extends "mysite/base_generic.html" %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+    <h2>Welcome {{ user.username }}</h2>
+    {% if user.user_role == 'recruiter' %}
+        <p>Create Projects to start your work</p>
+        <a href="{% url "project_new" %}">New Project</a>
+    {% else %}
+        <p>Bid Projects to start your work</p>
+        <a href="{% url "project_list" %}">All Projects List</a>
+    {% endif %}
+{% else %}
+    <p>Mysite is a global online marketplace offering tasks and services, beginning at a cost of $5 per job performed,from which it gets its name. The site is primarily used by freelancers who use Fiverr to offer services to customers worldwid</p>
+{% endif %}
+
+{% endblock %}

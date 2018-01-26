@@ -1,0 +1,30 @@
+{% extends "mysite/base_generic.html" %}
+
+{% block content %}
+
+<h1>Projects</h1>
+{% if object_list %}
+    <ul>
+        {% for project in object_list %}
+            <li>{{ project.name }}  :
+            <a href="{% url "project_view" project.id %}">View</a>
+                {% if user.user_role == 'recruiter' %}
+                    <a href="{% url "project_edit" project.id %}">Edit</a>
+                    <a href="{% url "project_delete" project.id %}">Delete</a>
+                    {% if project.status == 'Unassigned' and project.projectbid_set.count == 0 %}
+                        <a href="{% url "project_assign" project.id %}">Assign Project</a>
+                    {% endif %}
+                {% else %}
+                    <a href="{% url "project_bid_new" project.id %}">Bid project</a>
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    Sorry, there no projects. Create some.
+{% endif %}
+
+<a href="{% url "project_new" %}">New Project</a>
+
+{% endblock %}
+
