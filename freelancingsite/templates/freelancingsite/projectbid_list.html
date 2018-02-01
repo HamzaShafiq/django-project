@@ -1,0 +1,22 @@
+{% extends "freelancingsite/base_generic.html" %}
+
+{% block content %}
+
+    <h1>Project Bids</h1>
+
+    {% if object_list %}
+        <ul>
+            {% for project_bid in object_list %}
+                <li>{{ project_bid.project.name }}  :
+                    <a href="{% url "project_view" project_bid.project.id %}">View Project</a>
+                    <a href="{% url "project_bid_edit" project_bid.id %}">Edit Project Bid</a>
+                    <a id="delete_project" data-toggle="modal" data-target="#delete_modal" data-project-bid-id={{ project_bid.id }} data-project-name={{ project_bid.project.name }} data-type="project bid">Delete Project Bid</a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        Sorry, there no bid on any projects. Make bids <a href="{% url "project_list" %}">All Projects</a>
+    {% endif %}
+    {% include 'freelancingsite/delete_confirmation_modal.html' %}
+{% endblock %}
+

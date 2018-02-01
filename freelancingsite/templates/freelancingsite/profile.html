@@ -1,0 +1,11 @@
+{% extends "freelancingsite/base_generic.html" %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+    <p><strong>Username:</strong> {{ user.username }}</p>
+    <p><strong>Email:</strong> {{ user.email }}</p>
+    <p><strong>Role:</strong> {{ user.user_role }}</p>
+{% endif %}
+
+{% endblock %}

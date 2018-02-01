@@ -31,12 +31,13 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'freelancingsite',
+    'django.contrib.admin',
 ]
 
 MIDDLEWARE = [
@@ -119,4 +120,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-TEMPLATE_DIRS = (os.path.join(BASE_DIR,  'templates'),)
+TEMPLATE_DIRS = (os.path.join(BASE_DIR, 'freelancingsite/templates'),)
+
+LOGIN_REDIRECT_URL = '/'
+
+AUTH_USER_MODEL = 'freelancingsite.User'
