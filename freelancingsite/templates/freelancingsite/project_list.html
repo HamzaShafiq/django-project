@@ -1,0 +1,32 @@
+{% extends "freelancingsite/base_generic.html" %}
+
+{% block content %}
+
+    <h1>Projects</h1>
+    {% if object_list %}
+        <ul>
+            {% for project in object_list %}
+                <li>{{ project.name }}  :
+                    <a href="{% url "project_view" project.id %}">View</a>
+                    {% if user.user_role == user_role.recruiter and project.created_by == user %}
+                        <a href="{% url "project_edit" project.id %}">Edit</a>
+                        <a id="delete_project" data-toggle="modal" data-target="#delete_modal" data-project-id={{ project.id }} data-project-name={{ project.name }} data-type="project">Delete</a>
+                        {% if project.status == 'Unassigned' and project.projectbid_set.count == 0 %}
+                            <a href="{% url "project_assign" project.id %}">Assign Project</a>
+                        {% endif %}
+                    {% elif user.user_role == user_role.freelancer %}
+                        <a href="{% url "project_bid_new" project.id %}">Bid project</a>
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        Sorry, there no projects. Create some.
+        {% if user.user_role == user_role.recruiter %}
+            <a href="{% url "project_new" %}">New Project</a>
+        {% endif %}
+    {% endif %}
+    {% include 'freelancingsite/delete_confirmation_modal.html' %}
+
+{% endblock %}
+

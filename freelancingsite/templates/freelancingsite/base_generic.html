@@ -1,0 +1,30 @@
+{% load static %}
+
+<html>
+<head>
+
+    {% block head-css %}
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="{% static 'freelancingsite/style.css' %}" />
+    {% endblock %}
+
+</head>
+
+{% include 'freelancingsite/header.html' %}
+
+<!-- This is where you'll put your page content. Leave it blank for now. -->
+<div class="container">
+    {% block content %}
+
+    {% endblock %}
+</div>
+
+{% include 'freelancingsite/footer.html' %}
+
+{% block head-javascript %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="{% static 'freelancingsite/custom.js' %}"></script>
+{% endblock %}
+
+</html>

@@ -36,7 +36,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'mysite',
+    'freelancingsite',
     'django.contrib.admin',
 ]
 
@@ -120,8 +120,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-TEMPLATE_DIRS = (os.path.join(BASE_DIR, 'mysite/templates'),)
+TEMPLATE_DIRS = (os.path.join(BASE_DIR, 'freelancingsite/templates'),)
 
 LOGIN_REDIRECT_URL = '/'
 
-AUTH_USER_MODEL = 'mysite.User'
+AUTH_USER_MODEL = 'freelancingsite.User'
